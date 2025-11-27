@@ -1,7 +1,6 @@
-
 const crypto = require('crypto');
 
-const getSHA256Hash =  (req, res) => {
+const postSHA256Hash =  (req, res) => {
   try {
     const { data } = req.body;
     if (!data) {
@@ -12,10 +11,34 @@ const getSHA256Hash =  (req, res) => {
   } catch (error) {
     return res.status(500).json({ error: 'Internal Server Error' });
   }
-  
+
 };
 
+const postArgon2Hash =  (req, res) => {
+  try {
+    const { data } = req.body;
+    if (!data) {
+      return res.status(400).json({ error: 'Data is required' });
+    }
+    parameters = {
+      message : Buffer.from(data),
+      nonce: crypto.randomBytes(16),
+      memoryCost: 2 ** 16,
+      timeCost: 5,
+      taglenght: 64,
+      parallelism: 1
+    };
+    const argon2 = crypto.argon2(argon2d, parameters).update(data).digest('hex');
+
+    return res.status(200).json({ hash });
+  } catch (error) {
+    return res.status(500).json({ error: 'Internal Server Error' });
+  }
+
+};
+
+
 module.exports = {
-    getSHA256Hash,
-    encriptData
+    postSHA256Hash,
+    postArgon2Hash
 }
