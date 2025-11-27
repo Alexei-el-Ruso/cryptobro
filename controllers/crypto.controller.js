@@ -25,12 +25,21 @@ const postArgon2Hash =  (req, res) => {
       nonce: crypto.randomBytes(16),
       memoryCost: 2 ** 16,
       timeCost: 5,
-      taglenght: 64,
+      tagLenght: 64,
       parallelism: 1
     };
-    const argon2 = crypto.argon2(argon2d, parameters).update(data).digest('hex');
+    const argon2 = crypto.argon2(crypto.argon2d, parameters, (err, result) => {
+      if (err) {
+        return res.status(500).json({ error: 'Hashing error' });
+      }
 
+      const hash = result.toString("hex");
+      return res.status(200).json({ hash });
+
+    });
+    
     return res.status(200).json({ hash });
+
   } catch (error) {
     return res.status(500).json({ error: 'Internal Server Error' });
   }
