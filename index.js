@@ -10,5 +10,5 @@ app.get("/", (req, res) => {
     res.send("Hello World!");
 });
 
-const userRoute = require(`./routes/user.route`);
-app.use("/api/users", userRoute);
+const cryptoRoute = require(`./routes/crypto.route`);
+app.use("/api/crypto", cryptoRoute);
