@@ -1,48 +1,49 @@
 const crypto = require('crypto');
 
 const postSHA256Hash =  (req, res) => {
-    try {
-        const data = req.body.message;
-        if (!data) {
-            return res.status(400).json({ error: 'Data is required' });
-        }
-        const hash = crypto.createHash('sha256').update(data).digest('hex');
-        return res.status(200).json({ hash });
-    } catch (error) {
-        return res.status(500).json({ error: 'Internal Server Error' });
+  try {
+    const { data } = req.body;
+    if (!data) {
+      return res.status(400).json({ error: 'Data is required' });
     }
+    const hash = crypto.createHash('sha256').update(data).digest('hex');
+    return res.status(200).json({ hash });
+  } catch (error) {
+    return res.status(500).json({ error: 'Internal Server Error' });
+  }
+
 };
 
-const postArgon2Hash =  (req, res) => {
-    try {
-        const data = req.body.message;
-        if (!data) {
-            return res.status(400).json({ error: 'Data is required' });
-        }
-        parameters = {
-            message : data,
-            nonce: crypto.randomBytes(16),
-            memoryCost: 2 ** 16,
-            timeCost: 5,
-            tagLenght: 64,
-            parallelism: 1
-        };
-        const argon2 = crypto.argon2(crypto.argon2d, parameters, (err, result) => {
-            if (err) {
-                return res.status(500).json({ error: 'Hashing error' });
-            }
+const postArgon2Hash = (req, res) => {
+  try {
+    const { data } = req.body;
+    if (!data) return res.status(400).json({ error: 'Data is required' });
 
-            const hash = result.toString("hex");
-            return res.status(200).json({ hash });
+    const parameters = {
+      message: Buffer.from(String(data)),
+      nonce: crypto.randomBytes(16),
+      parallelism: 2,       
+      tagLength: 64,        
+      memory: 2 ** 16,      
+      passes: 5,            
+    };
 
-        });
+    
+    crypto.argon2('argon2d', parameters, (err, result) => {
+      if (err) {
+        console.error('Argon2 error:', err);
+        return res.status(500).json({ error: 'Hashing error', detail: err.message });
+      }
+      return res.status(200).json({ hash: result.toString('hex') });
+    });
 
-        return res.status(200).json({ hash });
-
-    } catch (error) {
-        return res.status(500).json({ error: 'Internal Server Error' });
-    }
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ error: 'Internal Server Error' });
+  }
 };
+
+
 
 module.exports = {
     postSHA256Hash,
