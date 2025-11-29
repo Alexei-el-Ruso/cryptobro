@@ -2,7 +2,7 @@ const crypto = require('crypto');
 
 const postSHA256Hash =  (req, res) => {
     try {
-        const { data } = req.body;
+        const data = req.body.message;
         if (!data) {
             return res.status(400).json({ error: 'Data is required' });
         }
