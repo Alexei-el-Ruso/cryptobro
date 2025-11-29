@@ -15,12 +15,12 @@ const postSHA256Hash =  (req, res) => {
 
 const postArgon2Hash =  (req, res) => {
     try {
-        const { data } = req.body;
+        const data = req.body.message;
         if (!data) {
             return res.status(400).json({ error: 'Data is required' });
         }
         parameters = {
-            message : Buffer.from(data),
+            message : data,
             nonce: crypto.randomBytes(16),
             memoryCost: 2 ** 16,
             timeCost: 5,
