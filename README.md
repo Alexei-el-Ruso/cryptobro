@@ -88,11 +88,11 @@ encriptados guardados y la llave utilizada para encriptarla.
        } 
 
 Por otro lado, el DSA requiere de una id de los DSA guardados
-y un mensaje para confirmarlo.
+y el mensaje a verificar.
 
        {
             "id": 0,
-            "message": hola
+            "message": "hola"
        }
 
 #### Salidas
