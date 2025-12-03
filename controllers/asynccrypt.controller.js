@@ -1,4 +1,5 @@
 const { webcrypto: { subtle } } = require('crypto');
+const crypto = require('crypto');
 
 let keyPair = null;
 
