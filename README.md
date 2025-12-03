@@ -28,6 +28,7 @@ los parámetros de entrada y un ejemplo.
 2. Instale los paquetes listados en package.json (Utilice un entorno virtual si lo desea)
 
 
+    npm init -y
     npm install
 
 
