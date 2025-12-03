@@ -12,7 +12,7 @@ router.post('/encrypt/aes_cbc', AESEncrypt);
 router.post('/decrypt/aes_cbc', AESDesencrypt);
 
 router.post('/encrypt/chacha20', symChaCha20en);
-router.post('/decrypt/chacha20', symChaCha20de);
+router.post('aes_', symChaCha20de);
 
 router.post('/sign/dsa', asymDSAsi);
 router.post('/verify/dsa', asymDSAve);

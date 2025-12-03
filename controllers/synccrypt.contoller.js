@@ -47,7 +47,8 @@ const symChaCha20en = (req, res) => {
 
         let loc_key;
         if (data.key) loc_key = Buffer.from(data.key, "hex");
-        else return res.status(400).json({ error: 'Key is required' });
+        else loc_key = crypto.randomBytes(32);
+        console.log(loc_key.toString('hex'));
 
         let loc_nonce;
         if (data.nonce) loc_nonce = data.nonce;
