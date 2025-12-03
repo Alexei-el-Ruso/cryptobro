@@ -18,18 +18,30 @@ los parámetros de entrada y un ejemplo.
 ## Instrucciones para montar el proyecto
 
 1. Clone el proyecto en la carpeta deseada.
+
+
+    git clone https://github.com/Alexei-el-Ruso/cryptobro.git
+
+
    La ubicación de la terminal debe estar en esta carpeta para los siguientes comandos.
+
 2. Instale los paquetes listados en package.json (Utilice un entorno virtual si lo desea)
 
-       npm install
+
+    npm install
+
 
 3. Ejecute la aplicación mediante node.
 
-       node index.js
+
+    node index.js
+
 
 4. Para probar que la ejecución ha sido exitosa, visite:
 
-       http://localhost:3000
+
+    http://localhost:3000
+
 
 5. Ingrese uno de los endpoints listados a continuación:
    1. http://localhost:3000/api/hash/sha256 para SHA256 
