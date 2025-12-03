@@ -20,29 +20,29 @@ los parámetros de entrada y un ejemplo.
 1. Clone el proyecto en la carpeta deseada.
 
 
-    git clone https://github.com/Alexei-el-Ruso/cryptobro.git
+       git clone https://github.com/Alexei-el-Ruso/cryptobro.git
 
 
-   La ubicación de la terminal debe estar en esta carpeta para los siguientes comandos.
+La ubicación de la terminal debe estar en esta carpeta para los siguientes comandos.
 
 2. Instale los paquetes listados en package.json (Utilice un entorno virtual si lo desea)
 
 
-    npm init -y
+       npm init -y
 
-    npm install
+       npm install
 
 
 3. Ejecute la aplicación mediante node.
 
 
-    node index.js
+       node index.js
 
 
 4. Para probar que la ejecución ha sido exitosa, visite:
 
 
-    http://localhost:3000
+       http://localhost:3000
 
 
 5. Ingrese uno de los endpoints listados a continuación:
@@ -62,38 +62,38 @@ Mediante alguna herramienta como Insomnia, Postman o cualquier otro cliente HTTP
 (cuerpo de la petición JSON), en cada uno de los endpoint se puede comprobar el funcionamiento,
 poniendo como entrada en los casos de hash SHA-256, Argon2, RSA (encriptado) y AES (encriptado):
 
-    {
-        "data": "hola"
-    }
+       {
+            "data": "hola"
+       }
 
 Mientras que para el desencriptado de RSA y AES:
 
-    {
-        "data": "[mensaje encriptado]"
-    }
+       {
+           "data": "[mensaje encriptado]"
+       }
 
 Además, ChaCha20 y DSA requieren de un mensaje y opcionalmente una llave
 (retorna localmente la Llave en la consola):
 
-    {
-        "message": "hola"
-    }
+       {
+            "message": "hola"
+       }
 
 Y para desencriptar el ChaCha20 se requiere de un índice de la lista de
 encriptados guardados y la llave utilizada para encriptarla.
 
-    {
-        "id": 0,
-        "key": "example_key"
-    } 
+       {
+            "id": 0,
+            "key": "example_key"
+       } 
 
 Por otro lado, el DSA requiere de una id de los DSA guardados
 y un mensaje para confirmarlo.
 
-    {
-        "id": 0,
-        "message": hola
-    }
+       {
+            "id": 0,
+            "message": hola
+       }
 
 #### Salidas
 
