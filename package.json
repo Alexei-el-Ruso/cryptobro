@@ -15,7 +15,8 @@
     "body-parser": "^2.2.1",
     "cors": "^2.8.5",
     "express": "^5.1.0",
-    "mongoose": "^9.0.0"
+    "mongoose": "^9.0.0",
+    "npm": "^11.6.4"
   },
   "keywords": [],
   "author": "Alexei Romero y Jorge Bello",
